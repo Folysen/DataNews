@@ -14,10 +14,11 @@ class NetworkManager {
     static let shared = NetworkManager()
     private let baseUrl = "http://api.datanews.io/v1/news?"
     private let apiKey = "08gtieyw6datcwhhfclhi3zc1"
-    private(set) var pageSize = 30
     private let cache = NSCache<NSString, UIImage>()
     
     //MARK: - Properties
+    
+    private(set) var pageSize = 30
     
     //MARK: - Public methods
     

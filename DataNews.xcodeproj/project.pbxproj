@@ -17,6 +17,14 @@
 		C49466D225A37D20000DA74E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466D125A37D20000DA74E /* Post.swift */; };
 		C49466D525A37D45000DA74E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466D425A37D45000DA74E /* NetworkManager.swift */; };
 		C49466D825A37D7D000DA74E /* DNError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466D725A37D7D000DA74E /* DNError.swift */; };
+		C49466DC25A37EF2000DA74E /* DNDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466DB25A37EF2000DA74E /* DNDataLoadingVC.swift */; };
+		C49466E025A37F46000DA74E /* DNAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466DF25A37F46000DA74E /* DNAlertVC.swift */; };
+		C49466E425A37F68000DA74E /* DNContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466E325A37F68000DA74E /* DNContainerView.swift */; };
+		C49466E925A37F89000DA74E /* DNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466E825A37F89000DA74E /* DNButton.swift */; };
+		C49466EE25A37FB9000DA74E /* DNTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466ED25A37FB9000DA74E /* DNTitleLabel.swift */; };
+		C49466F225A37FCF000DA74E /* DNBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F125A37FCF000DA74E /* DNBodyLabel.swift */; };
+		C49466F525A3800C000DA74E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F425A3800C000DA74E /* UIView+Ext.swift */; };
+		C49466F825A38022000DA74E /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F725A38022000DA74E /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,14 @@
 		C49466D125A37D20000DA74E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C49466D425A37D45000DA74E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C49466D725A37D7D000DA74E /* DNError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNError.swift; sourceTree = "<group>"; };
+		C49466DB25A37EF2000DA74E /* DNDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNDataLoadingVC.swift; sourceTree = "<group>"; };
+		C49466DF25A37F46000DA74E /* DNAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNAlertVC.swift; sourceTree = "<group>"; };
+		C49466E325A37F68000DA74E /* DNContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNContainerView.swift; sourceTree = "<group>"; };
+		C49466E825A37F89000DA74E /* DNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNButton.swift; sourceTree = "<group>"; };
+		C49466ED25A37FB9000DA74E /* DNTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNTitleLabel.swift; sourceTree = "<group>"; };
+		C49466F125A37FCF000DA74E /* DNBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBodyLabel.swift; sourceTree = "<group>"; };
+		C49466F425A3800C000DA74E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		C49466F725A38022000DA74E /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +119,10 @@
 		C49466C925A37C8A000DA74E /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C49466EC25A37FA7000DA74E /* Labels */,
+				C49466E725A37F79000DA74E /* Buttons */,
+				C49466E225A37F58000DA74E /* Views */,
+				C49466DA25A37ED0000DA74E /* ViewControllers */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -110,6 +130,8 @@
 		C49466CA25A37C93000DA74E /* Extention */ = {
 			isa = PBXGroup;
 			children = (
+				C49466F425A3800C000DA74E /* UIView+Ext.swift */,
+				C49466F725A38022000DA74E /* UIViewController+Ext.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -133,6 +155,40 @@
 				C49466BB25A378EF000DA74E /* LaunchScreen.storyboard */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		C49466DA25A37ED0000DA74E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C49466DB25A37EF2000DA74E /* DNDataLoadingVC.swift */,
+				C49466DF25A37F46000DA74E /* DNAlertVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C49466E225A37F58000DA74E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C49466E325A37F68000DA74E /* DNContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C49466E725A37F79000DA74E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				C49466E825A37F89000DA74E /* DNButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		C49466EC25A37FA7000DA74E /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				C49466ED25A37FB9000DA74E /* DNTitleLabel.swift */,
+				C49466F125A37FCF000DA74E /* DNBodyLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,12 +261,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C49466E425A37F68000DA74E /* DNContainerView.swift in Sources */,
 				C49466D525A37D45000DA74E /* NetworkManager.swift in Sources */,
+				C49466F825A38022000DA74E /* UIViewController+Ext.swift in Sources */,
+				C49466E025A37F46000DA74E /* DNAlertVC.swift in Sources */,
 				C49466CE25A37D0F000DA74E /* NewsData.swift in Sources */,
+				C49466F525A3800C000DA74E /* UIView+Ext.swift in Sources */,
 				C49466B525A378EC000DA74E /* ViewController.swift in Sources */,
+				C49466DC25A37EF2000DA74E /* DNDataLoadingVC.swift in Sources */,
+				C49466E925A37F89000DA74E /* DNButton.swift in Sources */,
 				C49466B125A378EC000DA74E /* AppDelegate.swift in Sources */,
 				C49466B325A378EC000DA74E /* SceneDelegate.swift in Sources */,
+				C49466EE25A37FB9000DA74E /* DNTitleLabel.swift in Sources */,
 				C49466D225A37D20000DA74E /* Post.swift in Sources */,
+				C49466F225A37FCF000DA74E /* DNBodyLabel.swift in Sources */,
 				C49466D825A37D7D000DA74E /* DNError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
