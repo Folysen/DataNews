@@ -34,6 +34,7 @@
 		C49466F225A37FCF000DA74E /* DNBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F125A37FCF000DA74E /* DNBodyLabel.swift */; };
 		C49466F525A3800C000DA74E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F425A3800C000DA74E /* UIView+Ext.swift */; };
 		C49466F825A38022000DA74E /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F725A38022000DA74E /* UIViewController+Ext.swift */; };
+		C4F14D3225A4DEDB00AEC07B /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		C49466F125A37FCF000DA74E /* DNBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNBodyLabel.swift; sourceTree = "<group>"; };
 		C49466F425A3800C000DA74E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C49466F725A38022000DA74E /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				C49466F725A38022000DA74E /* UIViewController+Ext.swift */,
 				C481078225A383FD00EAF35B /* Date+Ext.swift */,
 				C481078625A3845200EAF35B /* String+Ext.swift */,
+				C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				C481076C25A382A700EAF35B /* DataNewsListVC.swift in Sources */,
 				C49466F225A37FCF000DA74E /* DNBodyLabel.swift in Sources */,
 				C481078D25A384A800EAF35B /* PostDetailInfoVC.swift in Sources */,
+				C4F14D3225A4DEDB00AEC07B /* UITableView+Ext.swift in Sources */,
 				C481078725A3845200EAF35B /* String+Ext.swift in Sources */,
 				C49466D825A37D7D000DA74E /* DNError.swift in Sources */,
 			);
@@ -501,6 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8DZYWHUP2S;
 				INFOPLIST_FILE = DataNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -520,6 +525,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8DZYWHUP2S;
 				INFOPLIST_FILE = DataNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

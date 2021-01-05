@@ -53,7 +53,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9W6-Ny-UFt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rei-eg-nNb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rei-eg-nNb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XGV-Tu-4X8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -71,7 +71,7 @@
         <!--Post Detail InfoVC-->
         <scene sceneID="0fC-SS-GgA">
             <objects>
-                <viewController storyboardIdentifier="PostDetailInfoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kee-SJ-ZGb" customClass="PostDetailInfoVC" customModule="DataNewsRaw" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetailInfoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kee-SJ-ZGb" customClass="PostDetailInfoVC" customModule="DataNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gLN-Bb-8ld">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

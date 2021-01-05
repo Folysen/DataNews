@@ -20,19 +20,23 @@ class DataNewsListViewModel {
     private(set) var newsList: [Post] = []
     private(set) var insertDataAtTheBeginning: Bool = false
     
-    private(set) var pageNumber = 0
     private(set) var language = "en"
     private(set) var country = ""
     
     private(set) var hasMorePosts = true
     private(set) var isLoadingMorePosts = false
     
-    private var pageSize: Int {
+    private(set) var postId = ""
+    private(set) var pageNumber = 1
+    //Last biggest page number that have been loaded
+    private(set) var lastBiggestLoadedPageNumber = 1
+    
+    var pageSize: Int {
         return NetworkManager.shared.pageSize
     }
     
     private var needToLoadPreviousNews: Bool {
-        return (pageNumber + 1) * pageSize > newsList.count
+        return lastBiggestLoadedPageNumber * pageSize != newsList.count
     }
     
 
@@ -42,7 +46,8 @@ class DataNewsListViewModel {
         
         isLoadingMorePosts = true
         
-        NetworkManager.shared.getNews(page: pageNumber, language: language, country: country) { [weak self] result in
+        //page index starts from "0" so we need to substract "1" from "pageNumber".
+        NetworkManager.shared.getNews(page: pageNumber - 1, language: language, country: country) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -54,10 +59,7 @@ class DataNewsListViewModel {
                     self.newsList.insert(contentsOf: newsData.hits, at: 0)
                 } else {
                     self.newsList.append(contentsOf: newsData.hits)
-                    
-                    if newsData.hits.count < self.pageSize {
-                        self.hasMorePosts = false
-                    }
+                    self.hasMorePosts = newsData.hits.count < self.pageSize ? false : true
                 }
                 
                 self.insertDataAtTheBeginning = false
@@ -67,6 +69,41 @@ class DataNewsListViewModel {
                 
             case .failure(let error):
                 completion(error)
+                break
+            }
+            
+            self.isLoadingMorePosts = false
+        }
+    }
+    
+    func updateNews(completion: @escaping (DNError?, Bool) -> Void) {
+        
+        isLoadingMorePosts = true
+        
+        //page index starts from "0" so we need to substract "1" from "pageNumber".
+        NetworkManager.shared.getNews(page: pageNumber - 1, language: language, country: country) { [weak self] result in
+            
+            guard let self = self else { return }
+            
+            switch result {
+            
+            case .success(let newsData):
+                
+                if self.insertDataAtTheBeginning {
+                    self.newsList.insert(contentsOf: newsData.hits, at: 0)
+                } else {
+                    self.newsList.append(contentsOf: newsData.hits)
+                    self.hasMorePosts = newsData.hits.count < self.pageSize ? false : true
+                }
+
+                completion(nil, self.insertDataAtTheBeginning)
+                
+                self.insertDataAtTheBeginning = false
+                
+                break
+                
+            case .failure(let error):
+                completion(error, false)
                 break
             }
             
@@ -95,11 +132,14 @@ class DataNewsListViewModel {
         
         if hasMorePosts, !isLoadingMorePosts {
             if indexPath.row == newsList.count - 3 {
-                pageNumber += 1
+
+                lastBiggestLoadedPageNumber += 1
+                pageNumber = lastBiggestLoadedPageNumber
                 needLoadData = true
                 
-            } else if indexPath.row == 0 && pageNumber != 0 && needToLoadPreviousNews  {
-                pageNumber -= 1
+            } else if indexPath.row == 0 && pageNumber != 1 && needToLoadPreviousNews {
+                
+                pageNumber = minimalPageNumberOfCurrentDataNewsList()
                 insertDataAtTheBeginning = true
                 needLoadData = true
             }
@@ -108,6 +148,26 @@ class DataNewsListViewModel {
         return needLoadData
     }
     
+    func minimalPageNumberOfCurrentDataNewsList() -> Int {
+
+        let itemsCountForAllPages = lastBiggestLoadedPageNumber * pageSize
+        let currentItemsCount = newsList.count
+        let itemsDiff = itemsCountForAllPages - currentItemsCount
+        
+        let minimalPageNumberOfCurrentDataNewsList = itemsDiff/pageSize
+
+        return minimalPageNumberOfCurrentDataNewsList
+    }
+    
+    func getCurrentPage(basedOn index: Int) -> Int {
+        
+        //because of zero index in collection we need to add "1"
+        let ratio = index/pageSize + 1
+        let currentPage = minimalPageNumberOfCurrentDataNewsList() + ratio
+
+        return currentPage
+    }
+
     func downloadImage(fromURLString url: String?, completionHandler: @escaping ImageCacheLoaderCompletionHandler) {
         
         guard let urlString = url,
@@ -119,5 +179,28 @@ class DataNewsListViewModel {
         NetworkManager.shared.downloadImage(from: urlString) { (image) in
             DispatchQueue.main.async { completionHandler(image) }
         }
+    }
+    
+    func getIndexPathOfPostIdentifier(postIdentifier: String) -> IndexPath {
+        guard let index = newsList.firstIndex(where: { $0.url == postIdentifier }) else {
+            return IndexPath(row: 0, section: 0)
+        }
+        
+        postId = ""
+        
+        return IndexPath(row: index, section: 0)
+    }
+    
+    func retrieve(restorationinfo: [AnyHashable: Any]?) {
+        
+        guard let info = restorationinfo,
+              let pageNumber = info["pageNumber"] as? Int,
+              let postId = info["postsId"] as? String else {
+            return
+        }
+        
+        self.postId = postId
+        self.pageNumber = pageNumber
+        lastBiggestLoadedPageNumber = pageNumber
     }
 }

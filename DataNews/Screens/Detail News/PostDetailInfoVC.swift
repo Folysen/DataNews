@@ -23,7 +23,7 @@ class PostDetailInfoVC: UIViewController {
     @IBOutlet private weak var postDescriptionLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var sourceLabel: UILabel!
-    @IBOutlet weak var fullPostButton: UIButton!
+    @IBOutlet private weak var fullPostButton: UIButton!
     
     @IBOutlet private weak var contentTextHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var descriptionTextHeightConstraint: NSLayoutConstraint!

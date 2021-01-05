@@ -18,7 +18,7 @@ class NetworkManager {
     
     //MARK: - Properties
     
-    private(set) var pageSize = 30
+    private(set) var pageSize = 20
     
     //MARK: - Public methods
     
