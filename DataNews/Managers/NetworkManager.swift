@@ -25,9 +25,12 @@ class NetworkManager {
     func getNews(page: Int,
              language: String,
               country: String,
+                query: String,
             completed: @escaping (Result<NewsData, DNError>) -> Void) {
         
-        let endpoint = baseUrl + "apiKey=\(apiKey)&page=\(page)&size=\(pageSize)&language=\(language)&country=\(country)"
+        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+ 
+        let endpoint = baseUrl + "apiKey=\(apiKey)&page=\(page)&size=\(pageSize)&language=\(language)&country=\(country)&q=\(encodedQuery ?? "")"
         
         guard let url = URL(string: endpoint) else {
             completed(.failure(.somethingWentWrong))

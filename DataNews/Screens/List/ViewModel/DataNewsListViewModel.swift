@@ -61,12 +61,15 @@ class DataNewsListViewModel {
 
     //MARK: - Public methods
     
-    func getNews(completion: @escaping (DNError?) -> Void) {
+    func getNews(query: String = "", completion: @escaping (DNError?) -> Void) {
         
         isLoadingMorePosts = true
         
-        //page index starts from "0" so we need to substract "1" from "pageNumber".
-        NetworkManager.shared.getNews(page: pageNumber - 1, language: language, country: country) { [weak self] result in
+        //page item index starts from "0" so we need to substract "1" from "pageNumber".
+        NetworkManager.shared.getNews(page: pageNumber - 1,
+                                      language: language,
+                                      country: country,
+                                      query: query) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -95,12 +98,15 @@ class DataNewsListViewModel {
         }
     }
     
-    func updateNews(completion: @escaping (DNError?, Bool) -> Void) {
+    func updateNews(query: String = "", completion: @escaping (DNError?, Bool) -> Void) {
         
         isLoadingMorePosts = true
         
-        //page index starts from "0" so we need to substract "1" from "pageNumber".
-        NetworkManager.shared.getNews(page: pageNumber - 1, language: language, country: country) { [weak self] result in
+        //page item index starts from "0" so we need to substract "1" from "pageNumber".
+        NetworkManager.shared.getNews(page: pageNumber - 1,
+                                      language: language,
+                                      country: country,
+                                      query: query) { [weak self] result in
             
             guard let self = self else { return }
             

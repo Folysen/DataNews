@@ -37,6 +37,7 @@
 		C4F14D3225A4DEDB00AEC07B /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */; };
 		C4F14D3F25A509F100AEC07B /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D3E25A509F100AEC07B /* FilterVC.swift */; };
 		C4F14D4325A50AD000AEC07B /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D4225A50AD000AEC07B /* FilterViewModel.swift */; };
+		C4FD671225A5583E00F37593 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD671125A5583E00F37593 /* UITextField+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		C4F14D3E25A509F100AEC07B /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		C4F14D4225A50AD000AEC07B /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		C4FD671125A5583E00F37593 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				C481078225A383FD00EAF35B /* Date+Ext.swift */,
 				C481078625A3845200EAF35B /* String+Ext.swift */,
 				C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */,
+				C4FD671125A5583E00F37593 /* UITextField+Ext.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				C4F14D4325A50AD000AEC07B /* FilterViewModel.swift in Sources */,
 				C49466B325A378EC000DA74E /* SceneDelegate.swift in Sources */,
 				C49466EE25A37FB9000DA74E /* DNTitleLabel.swift in Sources */,
+				C4FD671225A5583E00F37593 /* UITextField+Ext.swift in Sources */,
 				C49466D225A37D20000DA74E /* Post.swift in Sources */,
 				C481076C25A382A700EAF35B /* DataNewsListVC.swift in Sources */,
 				C49466F225A37FCF000DA74E /* DNBodyLabel.swift in Sources */,

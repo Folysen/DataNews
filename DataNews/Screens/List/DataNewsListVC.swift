@@ -21,6 +21,11 @@ class DataNewsListVC: DNDataLoadingVC {
     private let filterVCId = "FilterVC"
     
     //MARK: - Outlets
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var cancelSearchButton: UIButton!
+    @IBOutlet weak var searchViewTopConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var tableView: UITableView!
     
@@ -41,6 +46,7 @@ class DataNewsListVC: DNDataLoadingVC {
         getNews()
         addRightButtonToNavigationBar()
         addLeftButtonToNavigationBar()
+        setupSearchViewUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,10 +83,10 @@ class DataNewsListVC: DNDataLoadingVC {
     
     //MARK: - Private methods
     
-    private func getNews() {
+    private func getNews(query: String = "") {
         
         showLoadingView()
-        viewModel.getNews { [weak self] (error) in
+        viewModel.getNews(query: query) { [weak self] (error) in
             
             guard let self = self else { return }
             
@@ -90,22 +96,29 @@ class DataNewsListVC: DNDataLoadingVC {
                 self.presentDNAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             } else {
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.tableView.isHidden = false
                     
-                    if !self.viewModel.postId.isEmpty {
-                        self.tableView.scrollToRow(at: self.viewModel.getIndexPathOfPostIdentifier(postIdentifier: self.viewModel.postId), at: .top, animated: false)
+                    if self.viewModel.newsList.isEmpty {
+                        self.tableView.isHidden = true
+                        self.view.endEditing(true)
+                    } else {
+                        
+                        self.tableView.reloadData()
+                        self.tableView.isHidden = false
+                        
+                        if !self.viewModel.postId.isEmpty {
+                            self.tableView.scrollToRow(at: self.viewModel.getIndexPathOfPostIdentifier(postIdentifier: self.viewModel.postId), at: .top, animated: false)
+                        }
                     }
                 }
             }
         }
     }
     
-    private func updateNews() {
+    private func updateNews(query: String = "") {
         
         self.showLoadingView()
         
-        viewModel.updateNews { [weak self] (error, insertDataAtTheBeginning) in
+        viewModel.updateNews(query: query) { [weak self] (error, insertDataAtTheBeginning) in
             
             guard let self = self else { return }
             
@@ -181,14 +194,51 @@ class DataNewsListVC: DNDataLoadingVC {
     }
     
     @objc private func goToSearchVC() {
+        UIView.animate(withDuration: 0.5) {
+            self.searchViewTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func setupSearchViewUI() {
+        searchTextField.layer.borderWidth = 1.0
+        searchTextField.layer.borderColor = UIColor.link.cgColor
+        searchTextField.layer.cornerRadius = 5.0
+        searchTextField.setLeftPaddingPoints(7.0)
         
+        cancelSearchButton.layer.borderWidth = 1.0
+        cancelSearchButton.layer.borderColor = UIColor.red.cgColor
+        cancelSearchButton.layer.cornerRadius = 5.0
+        
+        searchButton.layer.borderWidth = 1.0
+        searchButton.layer.borderColor = UIColor.link.cgColor
+        searchButton.layer.cornerRadius = 5.0
     }
     
     // MARK: - Configure tableView
     
     private func configureTableView() {
+        tableView.keyboardDismissMode = .onDrag
+        
         let cellNib = UINib(nibName: DataNewsPostTableViewCell.reuseID, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: DataNewsPostTableViewCell.reuseID)
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func searchButtonPressed(_ sender: UIButton) {
+        reloadContent()
+    }
+    
+    @IBAction func cancelSearchButtonPressed(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5) {
+            self.searchViewTopConstraint.constant = -55
+            self.view.layoutIfNeeded()
+        }
+        
+        view.endEditing(true)
+        searchTextField.text = ""
+        reloadContent()
     }
 }
 
@@ -227,7 +277,7 @@ extension DataNewsListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if viewModel.needToLoadNews(basedOn: indexPath) {
-            updateNews()
+            updateNews(query: searchTextField.text ?? "")
         }
     }
     
@@ -247,6 +297,6 @@ extension DataNewsListVC: FilterVCDelegate {
     
     func reloadContent() {
         viewModel.clearAllData()
-        getNews()
+        getNews(query: searchTextField.text ?? "")
     }
 }
