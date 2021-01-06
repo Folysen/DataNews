@@ -21,6 +21,7 @@ class DataNewsListVC: DNDataLoadingVC {
     private let filterVCId = "FilterVC"
     
     //MARK: - Outlets
+    @IBOutlet weak var noResultsLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchButton: UIButton!
@@ -99,11 +100,13 @@ class DataNewsListVC: DNDataLoadingVC {
                     
                     if self.viewModel.newsList.isEmpty {
                         self.tableView.isHidden = true
+                        self.noResultsLabel.isHidden = false
                         self.view.endEditing(true)
                     } else {
                         
                         self.tableView.reloadData()
                         self.tableView.isHidden = false
+                        self.noResultsLabel.isHidden = true
                         
                         if !self.viewModel.postId.isEmpty {
                             self.tableView.scrollToRow(at: self.viewModel.getIndexPathOfPostIdentifier(postIdentifier: self.viewModel.postId), at: .top, animated: false)
@@ -231,6 +234,9 @@ class DataNewsListVC: DNDataLoadingVC {
     }
     
     @IBAction func cancelSearchButtonPressed(_ sender: UIButton) {
+        
+        self.noResultsLabel.isHidden = true
+        
         UIView.animate(withDuration: 0.5) {
             self.searchViewTopConstraint.constant = -55
             self.view.layoutIfNeeded()

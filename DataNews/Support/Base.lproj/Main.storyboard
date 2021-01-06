@@ -20,7 +20,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoDatanews" translatesAutoresizingMaskIntoConstraints="NO" id="qtY-sW-kYI">
                                 <rect key="frame" x="20" y="64" width="335" height="583"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results for such keyword" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuL-hM-JuC">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results for such keyword" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuL-hM-JuC">
                                 <rect key="frame" x="10" y="144" width="355" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="W8M-9Q-2Ub"/>
@@ -107,6 +107,7 @@
                     <navigationItem key="navigationItem" id="4I7-jd-8a4"/>
                     <connections>
                         <outlet property="cancelSearchButton" destination="w5C-qS-4tX" id="02C-q1-Z1y"/>
+                        <outlet property="noResultsLabel" destination="iuL-hM-JuC" id="nEp-V8-zyb"/>
                         <outlet property="searchButton" destination="EXd-fF-RZH" id="zkN-3u-mhy"/>
                         <outlet property="searchTextField" destination="1lV-bd-79P" id="0sQ-2O-x0B"/>
                         <outlet property="searchView" destination="QVS-ln-PWj" id="Go1-TF-kGi"/>
