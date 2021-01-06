@@ -35,6 +35,8 @@
 		C49466F525A3800C000DA74E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F425A3800C000DA74E /* UIView+Ext.swift */; };
 		C49466F825A38022000DA74E /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49466F725A38022000DA74E /* UIViewController+Ext.swift */; };
 		C4F14D3225A4DEDB00AEC07B /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */; };
+		C4F14D3F25A509F100AEC07B /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D3E25A509F100AEC07B /* FilterVC.swift */; };
+		C4F14D4325A50AD000AEC07B /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F14D4225A50AD000AEC07B /* FilterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		C49466F425A3800C000DA74E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C49466F725A38022000DA74E /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		C4F14D3125A4DEDB00AEC07B /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		C4F14D3E25A509F100AEC07B /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		C4F14D4225A50AD000AEC07B /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		C49466C625A37C72000DA74E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C4F14D3D25A509D600AEC07B /* Filter */,
 				C481078125A383DA00EAF35B /* Detail News */,
 				C481077325A3831600EAF35B /* List */,
 			);
@@ -261,6 +266,15 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		C4F14D3D25A509D600AEC07B /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				C4F14D3E25A509F100AEC07B /* FilterVC.swift */,
+				C4F14D4225A50AD000AEC07B /* FilterViewModel.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,11 +356,13 @@
 				C481077E25A383A500EAF35B /* DataNewsPostTableViewModel.swift in Sources */,
 				C481077025A382EA00EAF35B /* DataNewsListViewModel.swift in Sources */,
 				C49466F525A3800C000DA74E /* UIView+Ext.swift in Sources */,
+				C4F14D3F25A509F100AEC07B /* FilterVC.swift in Sources */,
 				C481078325A383FD00EAF35B /* Date+Ext.swift in Sources */,
 				C49466DC25A37EF2000DA74E /* DNDataLoadingVC.swift in Sources */,
 				C481078A25A3848900EAF35B /* Constants.swift in Sources */,
 				C49466E925A37F89000DA74E /* DNButton.swift in Sources */,
 				C49466B125A378EC000DA74E /* AppDelegate.swift in Sources */,
+				C4F14D4325A50AD000AEC07B /* FilterViewModel.swift in Sources */,
 				C49466B325A378EC000DA74E /* SceneDelegate.swift in Sources */,
 				C49466EE25A37FB9000DA74E /* DNTitleLabel.swift in Sources */,
 				C49466D225A37D20000DA74E /* Post.swift in Sources */,

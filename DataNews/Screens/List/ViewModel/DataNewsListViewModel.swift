@@ -13,15 +13,16 @@ class DataNewsListViewModel {
     
     //MARK: - Constants
     
+    let defaults = UserDefaults.standard
+    let langCodeKey = "langCode"
+    let countryCodeKey = "countryCode"
+    
     private let postTableViewCellHeightWithoutTitle: CGFloat = 77
     
     //MARK: - Properties
     
     private(set) var newsList: [Post] = []
     private(set) var insertDataAtTheBeginning: Bool = false
-    
-    private(set) var language = "en"
-    private(set) var country = ""
     
     private(set) var hasMorePosts = true
     private(set) var isLoadingMorePosts = false
@@ -30,6 +31,24 @@ class DataNewsListViewModel {
     private(set) var pageNumber = 1
     //Last biggest page number that have been loaded
     private(set) var lastBiggestLoadedPageNumber = 1
+    
+    var language: String {
+        guard let languageCode = defaults.string(forKey: langCodeKey) else {
+            defaults.set("en", forKey: langCodeKey)
+            return "en"
+        }
+        
+        return languageCode
+    }
+    
+    var country: String {
+        guard let countryCode = defaults.string(forKey: countryCodeKey) else {
+            defaults.set("", forKey: countryCodeKey)
+            return ""
+        }
+        
+        return countryCode
+    }
     
     var pageSize: Int {
         return NetworkManager.shared.pageSize
@@ -202,5 +221,18 @@ class DataNewsListViewModel {
         self.postId = postId
         self.pageNumber = pageNumber
         lastBiggestLoadedPageNumber = pageNumber
+    }
+    
+    func clearAllData() {
+        
+        newsList = [Post]()
+        insertDataAtTheBeginning = false
+        
+        hasMorePosts = true
+        isLoadingMorePosts = false
+        
+        postId = ""
+        pageNumber = 1
+        lastBiggestLoadedPageNumber = 1
     }
 }

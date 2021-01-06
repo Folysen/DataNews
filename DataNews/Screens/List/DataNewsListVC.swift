@@ -7,12 +7,18 @@
 
 import UIKit
 
+enum FilterType: Int {
+    case country
+    case language
+}
+
 class DataNewsListVC: DNDataLoadingVC {
     
     //MARK: - Constants
     
     private let storyboardName = "Main"
     private let detailNewsVCId = "PostDetailInfoVC"
+    private let filterVCId = "FilterVC"
     
     //MARK: - Outlets
     
@@ -30,16 +36,15 @@ class DataNewsListVC: DNDataLoadingVC {
         
         title = "Data news"
         
-        navigationController?.navigationBar.isHidden = true
-        
         configureTableView()
         viewModel.retrieve(restorationinfo: self.restorationInfo)
         getNews()
+        addRightButtonToNavigationBar()
+        addLeftButtonToNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,18 +131,53 @@ class DataNewsListVC: DNDataLoadingVC {
         }
     }
     
+    private func showActionSheet() {
+        let alertController = UIAlertController(title: "Choose filters", message: "", preferredStyle: .actionSheet)
+        
+        let chooseLanguageAction = UIAlertAction(title: "Choose language", style: .default, handler: { (action) -> Void in
+            self.openFiltersVC(with: .language)
+        })
+        
+        let chooseCountryAction = UIAlertAction(title: "Choose country", style: .default, handler: { (action) -> Void in
+            self.openFiltersVC(with: .country)
+        })
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            print("Cancel button tapped")
+        })
+        
+        
+        alertController.addAction(chooseLanguageAction)
+        alertController.addAction(chooseCountryAction)
+        alertController.addAction(cancelButton)
+        
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func openFiltersVC(with filterType: FilterType) {
+  
+        let storyboard = UIStoryboard(name: self.storyboardName, bundle: nil)
+        let filterVC = storyboard.instantiateViewController(withIdentifier: self.filterVCId) as! FilterVC
+        filterVC.setup(viewModel: FilterViewModel(filterType))
+        filterVC.delegate = self
+        
+        let navVC = UINavigationController(rootViewController: filterVC)
+        navVC.modalPresentationStyle = .overFullScreen
+        self.present(navVC, animated: true)
+    }
+    
     private func addRightButtonToNavigationBar() {
         let button1 = UIBarButtonItem(image: UIImage(named: "dots"), style:.plain, target: self, action: #selector(openPickerView))
         self.navigationItem.rightBarButtonItem  = button1
     }
     
     private func addLeftButtonToNavigationBar() {
-        let button1 = UIBarButtonItem(image: UIImage(named: "dots"), style:.plain, target: self, action: #selector(goToSearchVC))
+        let button1 = UIBarButtonItem(image: UIImage(named: "searchIcon"), style:.plain, target: self, action: #selector(goToSearchVC))
         self.navigationItem.leftBarButtonItem  = button1
     }
     
     @objc private func openPickerView() {
-        
+        showActionSheet()
     }
     
     @objc private func goToSearchVC() {
@@ -198,5 +238,15 @@ extension DataNewsListVC: UITableViewDelegate {
         detailVC.setup(viewModel: viewModel.getDetailPostViewModel(for: indexPath))
         
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+//MARK: - FilterVCDelegate
+
+extension DataNewsListVC: FilterVCDelegate {
+    
+    func reloadContent() {
+        viewModel.clearAllData()
+        getNews()
     }
 }
